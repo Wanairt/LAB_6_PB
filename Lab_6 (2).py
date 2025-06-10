@@ -13,13 +13,12 @@ def f_iterative(n):
     if n == 1 or n == 2:
         return 1
     prev = 1
-    fact = 1 
-    for i in range(3, n + 1):
-        for j in range((i + 2) - (i + 1), i + 3):
-            fact *= j
+    fact = 6
+     for i in range(3, n + 1):
         sign = 1 if i % 2 == 0 else -1
         curr = sign * (prev - fact)
         prev = curr
+        fact *= (i + 3)
     return prev
 
 if __name__ == '__main__':
