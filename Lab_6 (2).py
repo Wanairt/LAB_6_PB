@@ -10,15 +10,17 @@ def f_recursive(n):
         return sign * (f_recursive(n-1) - math.factorial(n + 2))
 
 def f_iterative(n):
-    f = [0] * (n + 1)
-    if n >= 1:
-        f[1] = 1
-    if n >= 2:
-        f[2] = 1
+    if n == 1 or n == 2:
+        return 1
+    prev = 1
+    fact = 1 
     for i in range(3, n + 1):
+        for j in range((i + 2) - (i + 1), i + 3):
+            fact *= j
         sign = 1 if i % 2 == 0 else -1
-        f[i] = sign * (f[i - 1] - math.factorial(i + 2))
-    return f[n]
+        curr = sign * (prev - fact)
+        prev = curr
+    return prev
 
 if __name__ == '__main__':
     n_values = range(270, 301)  # Ограничение n для рекурсии
